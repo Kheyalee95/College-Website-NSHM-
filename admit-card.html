@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admit Card - NSHM Knowledge Campus Kolkata</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <img src="nshmk logo.png" alt="NSHM Logo">
+        <div class="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#">Courses</a>
+                    <ul class="dropdown-content">
+                        <!-- Courses list here -->
+                    </ul>
+                </li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="admit-card-section">
+        <div id="admit-card-content">
+            <h2>Admit Card</h2>
+            <p><strong>Name:</strong> <span id="student-name"></span></p>
+            <p><strong>Course:</strong> <span id="course-name"></span></p>
+            <p><strong>Admission Number:</strong> <span id="admission-number"></span></p>
+            <p><strong>Exam Date:</strong> <span id="exam-date"></span></p>
+            <button onclick="downloadAdmitCard()">Download Admit Card</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+
+    <script>
+        // Fill admit card with student details
+        document.getElementById('student-name').textContent = localStorage.getItem('studentName');
+        document.getElementById('course-name').textContent = localStorage.getItem('courseName');
+        document.getElementById('admission-number').textContent = 'NSHM' + Math.floor(Math.random() * 1000000);
+        document.getElementById('exam-date').textContent = new Date().toLocaleDateString();
+
+        // Function to download admit card as PDF
+        function downloadAdmitCard() {
+            const element = document.getElementById('admit-card-content');
+            html2pdf().from(element).save('Admit_Card.pdf');
+        }
+    </script>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+</body>
+</html>

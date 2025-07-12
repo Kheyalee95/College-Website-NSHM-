@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - NSHM Knowledge Campus Kolkata</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <img src="nshmk logo.png" alt="NSHM Logo">
+        <div class="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="marksheet.html">Marksheet</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Us -->
+    <div class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p>If you have any questions or need further information, feel free to contact us:</p>
+                <p><strong>Address:</strong> 124, 60, Basanta Lal Saha Rd, Tara Park, Behala, Kolkata, West Bengal 700053</p>
+                <p><strong>Email:</strong> info@nshmk.edu</p>
+                <p><strong>Phone:</strong> 033 2403 2301</p>
+            </div>
+            <div class="contact-form">
+                <h2>Contact Form</h2>
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+    
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+    
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="admission.html">Admissions</a></li>
+                    <li><a href="courses.html">Programs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section about">
+                <h3>NSHM Kolkata</h3>
+                <p>124, 60, Basanta Lal Saha Rd, Tara Park,</p> 
+                <p>Behala, Kolkata, West Bengal 700053</p>
+                <p>Email: info@nshmk.edu</p>
+                <p>Phone: 033 2403 2301</p>
+            </div>
+            <div class="footer-section social">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/NSHMKnowledgeCampus">Facebook</a></li>
+                    <li><a href="https://x.com/i/flow/login?redirect_after_login=%2Fnshmkc">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/nshmkc/?hl=en">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/nshm-business-school-cp/">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NSHM Kolkata. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            // Form Validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Simple validation for empty fields
+            if (!name || !email || !message) {
+                alert('Please fill out all fields.');
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+
+            // Optional: Further validation for email format
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+
+            // Form is valid
+            alert('Thank you for contacting us!');
+        });
+    </script>
+</body>
+</html>

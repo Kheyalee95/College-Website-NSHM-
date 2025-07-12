@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page - NSHM Knowledge Campus Kolkata</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <img src="nshmk logo.png" alt="NSHM Logo">
+        <div class="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="confirmation-section">
+        <div class="confirmation-content">
+            <h2>ADMIT CARD</h2>
+            <div id="confirmation-details">
+                <!-- Admission and payment details will be displayed here -->
+            </div>
+            <button onclick="downloadPDF()">Download as PDF</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="admission.html">Admissions</a></li>
+                    <li><a href="courses.html">Programs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section about">
+                <h3>NSHM Kolkata</h3>
+                <p>124, 60, Basanta Lal Saha Rd, Tara Park,</p>
+                <p>Behala, Kolkata, West Bengal 700053</p>
+                <p>Email: info@nshmk.edu</p>
+                <p>Phone: 033 2403 2301</p>
+            </div>
+            <div class="footer-section social">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/NSHMKnowledgeCampus">Facebook</a></li>
+                    <li><a href="https://x.com/i/flow/login?redirect_after_login=%2Fnshmkc">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/nshmkc/?hl=en">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/nshm-business-school-cp/">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NSHM Kolkata. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Retrieve data from local storage
+        const firstName = localStorage.getItem('first-name');
+        const middleName = localStorage.getItem('middle-name');
+        const lastName = localStorage.getItem('last-name');
+        const birthday = localStorage.getItem('birthday');
+        const gender = localStorage.getItem('mygender');
+        const email = localStorage.getItem('email');
+        const phone = localStorage.getItem('phone');
+        const course = localStorage.getItem('course');
+        const cardName = localStorage.getItem('card-name');
+        const cardNumber = localStorage.getItem('card-number');
+        const expiry = localStorage.getItem('expiry');
+        const cvv = localStorage.getItem('cvv');
+
+        // Display details on the confirmation page
+        document.getElementById('confirmation-details').innerHTML = `
+            <h3><strong>Student Details:</strong></h3>
+            <p><strong>Name:</strong> ${firstName} ${middleName} ${lastName}</p>
+            <p><strong>Birthday:</strong> ${birthday}</p>
+            <p><strong>Gender:</strong> ${gender}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Selected Course:</strong> ${course}</p><br>
+            <h3><strong>Payment Details:</strong></h3>
+            <p><strong>Name on Card:</strong> ${cardName}</p>
+            <p><strong>Card Number:</strong> **** **** **** ${cardNumber.slice(-4)}</p>
+            <p><strong>Expiry Date:</strong> ${expiry}</p>
+        `;
+
+        // Function to download the confirmation as a PDF
+        function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const margin = 20;
+        const lineHeight = 10;
+        let yOffset = margin; 
+
+        // Title
+        doc.setFontSize(22);
+        doc.setFont("helvetica", "bold");
+        doc.text("ADMIT CARD", 105, yOffset, { align: 'center' }); 
+        yOffset += lineHeight * 2; 
+
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "bold");
+        doc.text("Student Details:", margin, yOffset);
+        yOffset += lineHeight;
+
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
+        
+        const labelWidth = 40;
+        const valueX = margin + labelWidth + 10; 
+
+        // Student Details
+        doc.text("Name:", margin, yOffset);
+        doc.text(`${firstName} ${middleName} ${lastName}`, valueX, yOffset);
+        yOffset += lineHeight;
+
+        doc.text("Birthday:", margin, yOffset);
+        doc.text(`${birthday}`, valueX, yOffset);
+        yOffset += lineHeight;
+
+        doc.text("Gender:", margin, yOffset);
+        doc.text(`${gender}`, valueX, yOffset);
+        yOffset += lineHeight;
+
+        doc.text("Email:", margin, yOffset);
+        doc.text(`${email}`, valueX, yOffset);
+        yOffset += lineHeight;
+
+        doc.text("Phone:", margin, yOffset);
+        doc.text(`${phone}`, valueX, yOffset);
+        yOffset += lineHeight;
+
+        doc.text("Selected Course:", margin, yOffset);
+        doc.text(`${course}`, valueX, yOffset);
+        yOffset += lineHeight * 2; 
+
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "bold");
+        doc.text("Payment Details:", margin, yOffset);
+        yOffset += lineHeight;
+
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
+        
+        // Payment Details
+        doc.text("Name on Card:", margin, yOffset);
+        doc.text(`${cardName}`, valueX, yOffset);
+        yOffset += lineHeight;
+
+        doc.text("Card Number:", margin, yOffset);
+        doc.text(`**** **** **** ${cardNumber.slice(-4)}`, valueX, yOffset);
+        yOffset += lineHeight;
+
+        doc.text("Expiry Date:", margin, yOffset);
+        doc.text(`${expiry}`, valueX, yOffset);
+        yOffset += lineHeight * 2;
+
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "bold");
+        doc.text("NSHM Knowledge Campus Kolkata", 105, yOffset, { align: 'center' });
+
+        // Save the PDF
+        doc.save("admitcard.pdf");
+        }
+
+    </script>
+</body>
+</html>
